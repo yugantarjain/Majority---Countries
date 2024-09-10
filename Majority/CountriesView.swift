@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  CountriesView.swift
 //  Majority
 //
 //  Created by Yugantar Jain on 08/09/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct CountriesView: View {
 	@Bindable var viewModel = ViewModel()
 
     var body: some View {
@@ -79,6 +79,6 @@ struct Country: Decodable {
 }
 
 #Preview {
-    ContentView()
+	CountriesView()
 		.environment(\.locale, .init(identifier: "sv"))
 }
