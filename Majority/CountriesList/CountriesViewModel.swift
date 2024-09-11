@@ -11,30 +11,31 @@ import SwiftData
 
 @Observable
 class CountriesViewModel {
-	private var cancellable: AnyCancellable?
-
 	var searchString = ""
 
-	var countries: [Country] = []
+	var loading = false
+	var error = false
+
+	var profileService = CountriesAPI()
 
 	func getCountries(modelContext: ModelContext) {
-		self.cancellable = NetworkManager.callAPI(urlString: "https://restcountries.com/v3.1/all")
-			.receive(on: RunLoop.main)
-			.catch { _ in Just([CountriesResponse]()) }
-			.sink { completion in
-				switch completion {
-					case .finished:
-						return
+		self.loading = true
 
-					case .failure(let error):
-						print(error)
-				}
-			} receiveValue: { countries in
-				for countryResponse in countries {
-					let country = Country(from: countryResponse)
-					modelContext.insert(country)
-				}
+		profileService.getCountries { result in
+			self.loading = false
+
+			switch result {
+				case .success(let countriesResponse):
+					self.error = false
+					for response in countriesResponse {
+						let country = Country(from: response)
+						modelContext.insert(country)
+					}
+
+				case .failure:
+					self.error = true
 			}
+		}
 	}
 
 }

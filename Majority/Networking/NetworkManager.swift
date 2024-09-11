@@ -10,18 +10,20 @@ import Combine
 
 struct NetworkManager {
 	static func callAPI<T: Decodable>(
-		urlString: String,
-		httpMethod: String = "GET",
-		uploadData: Data? = nil,
-		session: URLSession = .shared
+		endpoint: Endpoint,
+		session: URLSession
 	) -> AnyPublisher<T, Error> {
 		//convert url string to url
-		let url = URL(string: urlString)!
+		let urlString = endpoint.baseURL + endpoint.path
+		guard let url = URL(string: urlString) else {
+			return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
+		}
 
 		//setup url request
 		var request = URLRequest(url: url)
-		request.httpMethod = httpMethod
-		request.httpBody = uploadData
+		request.httpMethod = endpoint.httpMethod.rawValue
+		request.httpBody = endpoint.uploadData
+
 
 		// make the call using the url request
 		return session
