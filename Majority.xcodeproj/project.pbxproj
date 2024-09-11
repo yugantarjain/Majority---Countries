@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		532E091C2C91B2CB004C3864 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532E091B2C91B2CB004C3864 /* Size.swift */; };
+		532E091E2C91D0C2004C3864 /* CountriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532E091D2C91D0C2004C3864 /* CountriesResponse.swift */; };
 		5345DB712C8F00E6006051D8 /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5345DB702C8F00E6006051D8 /* CountriesViewModel.swift */; };
 		5345DB732C8F0AF4006051D8 /* CountryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5345DB722C8F0AF4006051D8 /* CountryDetailView.swift */; };
 		5345DB752C8F263C006051D8 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 5345DB742C8F263C006051D8 /* Localizable.xcstrings */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		532E091B2C91B2CB004C3864 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		532E091D2C91D0C2004C3864 /* CountriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesResponse.swift; sourceTree = "<group>"; };
 		5345DB702C8F00E6006051D8 /* CountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewModel.swift; sourceTree = "<group>"; };
 		5345DB722C8F0AF4006051D8 /* CountryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailView.swift; sourceTree = "<group>"; };
 		5345DB742C8F263C006051D8 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				5384B7322C9182F600BE6363 /* Country.swift */,
+				532E091D2C91D0C2004C3864 /* CountriesResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5384B7332C9182F600BE6363 /* Country.swift in Sources */,
+				532E091E2C91D0C2004C3864 /* CountriesResponse.swift in Sources */,
 				5384B73B2C9189EC00BE6363 /* CountryDetailSegmentView.swift in Sources */,
 				5384B7392C91892200BE6363 /* LocalizedStrings.swift in Sources */,
 				53EFAA822C8DEC8000AEAE35 /* NetworkManager.swift in Sources */,

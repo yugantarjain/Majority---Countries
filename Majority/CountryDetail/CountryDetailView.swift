@@ -13,7 +13,7 @@ struct CountryDetailView: View {
 
     var body: some View {
 		VStack {
-			AsyncImage(url: URL(string: country.flags.png)) { image in
+			AsyncImage(url: URL(string: country.flagURL)) { image in
 				image
 					.resizable()
 					.scaledToFill()
@@ -23,11 +23,12 @@ struct CountryDetailView: View {
 			.frame(width: Size.xLarge, height: Size.xLarge)
 			.clipShape(Circle())
 			.overlay {
-				Circle().stroke(.white, lineWidth: Size.xxSmall)
+				Circle()
+					.stroke(.white, lineWidth: Size.xxSmall)
 			}
 			.shadow(radius: Size.small)
 
-			Text(country.name.displayNames[viewModel.currentCountryNameIndex])
+			Text(country.displayNames[viewModel.currentCountryNameIndex])
 				.font(.largeTitle)
 				.bold()
 

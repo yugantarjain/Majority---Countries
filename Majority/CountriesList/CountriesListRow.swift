@@ -9,21 +9,24 @@ import SwiftUI
 
 struct CountriesListRow: View {
 	let country: Country
+	@State private var flagData = Data()
 
 	var body: some View {
 		HStack {
-			Text(country.name.common)
+			Text(country.name)
 				.font(.headline)
 
 			Spacer()
 
-			AsyncImage(url: URL(string: country.flags.png)) { image in
-				image.resizable()
-			} placeholder: {
-				Color.secondary
+			Image(uiImage: UIImage(data: flagData) ?? .init())
+				.resizable()
+				.frame(width: Size.mediumLarge, height: Size.medium)
+				.clipShape(.rect(cornerRadius: Size.xxSmall))
+		}
+		.task {
+			Task {
+				self.flagData = try await country.flagData
 			}
-			.frame(width: Size.mediumLarge, height: Size.medium)
-			.clipShape(.rect(cornerRadius: Size.xxSmall))
 		}
 	}
 }

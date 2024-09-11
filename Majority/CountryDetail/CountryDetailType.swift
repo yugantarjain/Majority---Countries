@@ -48,16 +48,16 @@ enum CountryDetailType {
 	func detail(country: Country) -> String? {
 		switch self {
 			case .capital:
-				return country.capital?.first
+				return country.capital
 
 			case .region:
 				return country.region
 
 			case .currencies:
-				return country.currencies?.values.map { $0.displayString }.joined(separator: "\n")
+				return country.currencies?.joined(separator: "\n")
 
 			case .languages:
-				return country.languages?.values.joined(separator: "\n")
+				return country.languages?.joined(separator: "\n")
 		}
 	}
 }

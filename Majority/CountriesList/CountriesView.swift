@@ -6,13 +6,17 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct CountriesView: View {
 	@Bindable var viewModel = CountriesViewModel()
+	@Environment(\.modelContext) private var modelContext
+
+	@Query private var countries: [Country]
 
     var body: some View {
 		NavigationStack {
-			List(viewModel.filteredCountries, id: \.name.common) { country in
+			List(countries, id: \.name) { country in
 				NavigationLink {
 					CountryDetailView(country: country)
 				} label: {
@@ -23,10 +27,10 @@ struct CountriesView: View {
 			.autocorrectionDisabled()
 			.navigationTitle(LocalizedStrings.countries)
 			.refreshable {
-				viewModel.getCountries()
+				viewModel.getCountries(modelContext: modelContext)
 			}
 			.task {
-				viewModel.getCountries()
+				viewModel.getCountries(modelContext: modelContext)
 			}
 		}
     }

@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftData
 
 @Observable
 class CountriesViewModel {
@@ -14,22 +15,12 @@ class CountriesViewModel {
 
 	var searchString = ""
 
-	var filteredCountries: [Country] {
-		guard !searchString.isEmpty else {
-			return countries
-		}
-
-		return countries.filter {
-			$0.name.common.contains(searchString)
-		}
-	}
-
 	var countries: [Country] = []
 
-	func getCountries() {
+	func getCountries(modelContext: ModelContext) {
 		self.cancellable = NetworkManager.callAPI(urlString: "https://restcountries.com/v3.1/all")
 			.receive(on: RunLoop.main)
-			.catch { _ in Just(self.countries) }
+			.catch { _ in Just([CountriesResponse]()) }
 			.sink { completion in
 				switch completion {
 					case .finished:
@@ -38,9 +29,10 @@ class CountriesViewModel {
 					case .failure(let error):
 						print(error)
 				}
-			} receiveValue: {
-				self.countries = $0.sorted {
-					$0.name.common < $1.name.common
+			} receiveValue: { countries in
+				for countryResponse in countries {
+					let country = Country(from: countryResponse)
+					modelContext.insert(country)
 				}
 			}
 	}

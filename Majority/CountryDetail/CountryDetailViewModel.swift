@@ -15,7 +15,7 @@ class CountryDetailViewModel {
 	var currentCountryNameIndex = 0
 
 	func nextElement(country: Country) {
-		currentCountryNameIndex = (currentCountryNameIndex + 1) % country.name.displayNames.count
+		currentCountryNameIndex = (currentCountryNameIndex + 1) % country.displayNames.count
 	}
 
 }

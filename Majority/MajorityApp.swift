@@ -13,5 +13,6 @@ struct MajorityApp: App {
         WindowGroup {
 			CountriesView()
         }
+		.modelContainer(for: Country.self)
     }
 }
