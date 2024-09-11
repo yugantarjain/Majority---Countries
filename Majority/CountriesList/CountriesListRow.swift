@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CountriesListRow: View {
 	let country: Country
-	@State private var flagData = Data()
 
 	var body: some View {
 		HStack {
@@ -18,15 +17,15 @@ struct CountriesListRow: View {
 
 			Spacer()
 
-			Image(uiImage: UIImage(data: flagData) ?? .init())
-				.resizable()
-				.frame(width: Size.mediumLarge, height: Size.medium)
-				.clipShape(.rect(cornerRadius: Size.xxSmall))
-		}
-		.task {
-			Task {
-				self.flagData = try await country.flagData
+			AsyncImage(url: URL(string: country.flagURL)) { image in
+				image
+					.resizable()
+					.scaledToFill()
+			} placeholder: {
+				Color.secondary
 			}
+			.frame(width: Size.mediumLarge, height: Size.medium)
+			.clipShape(.rect(cornerRadius: Size.xxSmall))
 		}
 	}
 }

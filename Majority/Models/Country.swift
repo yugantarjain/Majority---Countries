@@ -18,13 +18,6 @@ class Country {
 	var currencies: [String]?
 	var languages: [String]?
 
-	var flagData: Data {
-		get async throws {
-			let (data, _) = try await URLSession.shared.data(from: URL(string: flagURL)!)
-			return data
-		}
-	}
-
 	init(name: String, displayNames: [String], flagURL: String, capital: String? = nil, region: String, currencies: [String]? = nil, languages: [String]? = nil) {
 		self.name = name
 		self.displayNames = displayNames
