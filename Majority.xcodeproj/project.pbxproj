@@ -93,6 +93,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		537C7ADD2C91989100368C01 /* CountriesList */ = {
+			isa = PBXGroup;
+			children = (
+				53EFAA592C8DC31F00AEAE35 /* CountriesView.swift */,
+				537C7ADB2C91980000368C01 /* CountriesListRow.swift */,
+				5345DB702C8F00E6006051D8 /* CountriesViewModel.swift */,
+			);
+			path = CountriesList;
+			sourceTree = "<group>";
+		};
+		537C7ADE2C9198A200368C01 /* CountryDetail */ = {
+			isa = PBXGroup;
+			children = (
+				5345DB722C8F0AF4006051D8 /* CountryDetailView.swift */,
+				5384B7302C91816200BE6363 /* CountryDetailViewModel.swift */,
+				5384B73A2C9189EC00BE6363 /* CountryDetailSegmentView.swift */,
+				5384B7342C9184A000BE6363 /* CountryDetailType.swift */,
+			);
+			path = CountryDetail;
+			sourceTree = "<group>";
+		};
+		537C7ADF2C9198C200368C01 /* UI Constants */ = {
+			isa = PBXGroup;
+			children = (
+				5384B7382C91892200BE6363 /* LocalizedStrings.swift */,
+				5384B7362C91853F00BE6363 /* SFSymbol.swift */,
+			);
+			path = "UI Constants";
+			sourceTree = "<group>";
+		};
+		537C7AE02C9198E300368C01 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				53EFAA812C8DEC8000AEAE35 /* NetworkManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		537C7AE52C91998B00368C01 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5384B7322C9182F600BE6363 /* Country.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		53EFAA4B2C8DC31F00AEAE35 = {
 			isa = PBXGroup;
 			children = (
@@ -117,17 +163,11 @@
 			isa = PBXGroup;
 			children = (
 				53EFAA572C8DC31F00AEAE35 /* MajorityApp.swift */,
-				53EFAA592C8DC31F00AEAE35 /* CountriesView.swift */,
-				537C7ADB2C91980000368C01 /* CountriesListRow.swift */,
-				5345DB702C8F00E6006051D8 /* CountriesViewModel.swift */,
-				5345DB722C8F0AF4006051D8 /* CountryDetailView.swift */,
-				5384B7302C91816200BE6363 /* CountryDetailViewModel.swift */,
-				5384B7342C9184A000BE6363 /* CountryDetailType.swift */,
-				5384B73A2C9189EC00BE6363 /* CountryDetailSegmentView.swift */,
-				5384B7362C91853F00BE6363 /* SFSymbol.swift */,
-				5384B7382C91892200BE6363 /* LocalizedStrings.swift */,
-				5384B7322C9182F600BE6363 /* Country.swift */,
-				53EFAA812C8DEC8000AEAE35 /* NetworkManager.swift */,
+				537C7ADD2C91989100368C01 /* CountriesList */,
+				537C7ADE2C9198A200368C01 /* CountryDetail */,
+				537C7ADF2C9198C200368C01 /* UI Constants */,
+				537C7AE52C91998B00368C01 /* Models */,
+				537C7AE02C9198E300368C01 /* Networking */,
 				53EFAA5B2C8DC32100AEAE35 /* Assets.xcassets */,
 				5345DB742C8F263C006051D8 /* Localizable.xcstrings */,
 				53EFAA5D2C8DC32100AEAE35 /* Preview Content */,
