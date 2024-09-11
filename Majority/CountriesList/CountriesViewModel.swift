@@ -30,7 +30,15 @@ class CountriesViewModel {
 		self.cancellable = NetworkManager.callAPI(urlString: "https://restcountries.com/v3.1/all")
 			.receive(on: RunLoop.main)
 			.catch { _ in Just(self.countries) }
-			.sink {
+			.sink { completion in
+				switch completion {
+					case .finished:
+						return
+
+					case .failure(let error):
+						print(error)
+				}
+			} receiveValue: {
 				self.countries = $0.sorted {
 					$0.name.common < $1.name.common
 				}

@@ -20,10 +20,10 @@ struct CountriesListRow: View {
 			AsyncImage(url: URL(string: country.flags.png)) { image in
 				image.resizable()
 			} placeholder: {
-				Color.red
+				Color.secondary
 			}
-			.frame(width: 64, height: 40)
-			.clipShape(.rect(cornerRadius: 4))
+			.frame(width: Size.mediumLarge, height: Size.medium)
+			.clipShape(.rect(cornerRadius: Size.xxSmall))
 		}
 	}
 }

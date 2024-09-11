@@ -22,6 +22,9 @@ struct CountriesView: View {
 			.searchable(text: $viewModel.searchString)
 			.autocorrectionDisabled()
 			.navigationTitle(LocalizedStrings.countries)
+			.refreshable {
+				viewModel.getCountries()
+			}
 			.task {
 				viewModel.getCountries()
 			}

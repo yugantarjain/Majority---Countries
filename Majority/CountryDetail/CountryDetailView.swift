@@ -17,16 +17,15 @@ struct CountryDetailView: View {
 				image
 					.resizable()
 					.scaledToFill()
-					.clipShape(Circle())
-					.overlay {
-						Circle()
-							.stroke(.white, lineWidth: 4)
-					}
-					.shadow(radius: 10)
 			} placeholder: {
-				Color.red
+				Color.secondary
 			}
-			.frame(width: 160, height: 160)
+			.frame(width: Size.xLarge, height: Size.xLarge)
+			.clipShape(Circle())
+			.overlay {
+				Circle().stroke(.white, lineWidth: Size.xxSmall)
+			}
+			.shadow(radius: Size.small)
 
 			Text(country.name.displayNames[viewModel.currentCountryNameIndex])
 				.font(.largeTitle)
