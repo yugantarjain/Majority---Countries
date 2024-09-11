@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  CountriesViewModel.swift
 //  Majority
 //
 //  Created by Yugantar Jain on 09/09/24.
@@ -8,8 +8,8 @@
 import Foundation
 import Combine
 
-@Observable 
-class ViewModel {
+@Observable
+class CountriesViewModel {
 	private var cancellable: AnyCancellable?
 
 	var searchString = ""

@@ -2,7 +2,14 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Capital" : {
-
+      "localizations" : {
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Huvudstad"
+          }
+        }
+      }
     },
     "Countries" : {
       "localizations" : {
@@ -15,13 +22,34 @@
       }
     },
     "Currencies" : {
-
+      "localizations" : {
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valutor"
+          }
+        }
+      }
     },
     "Languages" : {
-
+      "localizations" : {
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Språk"
+          }
+        }
+      }
     },
     "Region" : {
-
+      "localizations" : {
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Område"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

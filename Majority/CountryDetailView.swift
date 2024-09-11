@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct CountryDetailView: View {
-	@State private var currentIndex = 0
-	let timer = Timer.publish(every: 2, on: .main, in: .common).autoconnect()
-
 	let country: Country
+	var viewModel = CountryDetailViewModel()
 
     var body: some View {
 		VStack {
@@ -30,63 +28,27 @@ struct CountryDetailView: View {
 			}
 			.frame(width: 160, height: 160)
 
-			Text(country.name.displayNames[currentIndex])
+			Text(country.name.displayNames[viewModel.currentCountryNameIndex])
 				.font(.largeTitle)
 				.bold()
 
-			GroupBox("Capital") {
-				HStack {
-					Text(country.capital?.first ?? "")
-					Spacer()
-				}
-			}
-
-			GroupBox("Region") {
-				HStack {
-					Text(country.region)
-					Spacer()
-				}
-			}
-
-			GroupBox("Currencies") {
-				HStack {
-					Text(country.currencies?.values.map { $0.displayString }.joined(separator: "\n") ?? "")
-					Spacer()
-				}
-			}
-
-			GroupBox("Languages") {
-				HStack {
-					Text(country.languages?.values.joined(separator: "\n") ?? "")
-					Spacer()
-				}
-			}
+			CountryDetailSegmentView(country: country, type: .capital)
+			CountryDetailSegmentView(country: country, type: .region)
+			CountryDetailSegmentView(country: country, type: .currencies)
+			CountryDetailSegmentView(country: country, type: .languages)
 
 			Spacer()
 		}
 		.padding()
 		.navigationBarTitleDisplayMode(.inline)
-		.onReceive(timer) { _ in
+		.onReceive(viewModel.timer) { _ in
 			withAnimation {
-				nextElement()
+				viewModel.nextElement(country: country)
 			}
 		}
     }
-
-	private func nextElement() {
-		currentIndex = (currentIndex + 1) % country.name.displayNames.count
-	}
 }
 
 #Preview {
-	CountryDetailView(
-		country: Country(
-			name: .init(common: "Germany", nativeName: ["de" : .init(common: "Deutschland")]),
-			flags: .init(png: "https://flagcdn.com/w320/de.png"),
-			capital: ["Berlin"],
-			region: "Europe", 
-			currencies: ["EUR" : Country.Currency(name: "Euro", symbol: "€")], 
-			languages: ["de" : "German"]
-		)
-	)
+	CountryDetailView(country: .mock)
 }
