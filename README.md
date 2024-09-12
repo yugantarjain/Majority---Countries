@@ -2,6 +2,8 @@
 
 Sample project to fetch country data from `https://restcountries.com` and display it in a beautiful user interface with the latest technologies and clean code.
 
+Built on Xcode 15
+
 | List View  | Detail View |
 | ------------- | ------------- |
 | <img width="485" alt="Screenshot 2024-09-12 at 4 30 43 PM" src="https://github.com/user-attachments/assets/af779ede-caa4-4ab2-9f98-7c418f3badb8">  |  <img width="485" alt="Screenshot 2024-09-12 at 4 37 48 PM" src="https://github.com/user-attachments/assets/35f8c74a-5328-4961-8976-75cb67224240"> |
@@ -17,8 +19,9 @@ REST API -> App response Codable -> Persistent SwiftData model -> View/ViewmMode
 
 ### User interface (SwiftUI):
 - Uses SwiftUI for the most modern UI code.
-- Uses newest navigation frameworks.
+- Uses the newest navigation frameworks including NavigationStack and .navigationDestination modifier..
 - Uses Swift macros for the latest data modelling capabilites and fast on-device filtering/searching.
+- Leverages SwiftUI's native animation support for a fun feature.
 
 ### Networking (Combine):
 - Uses the Combine framework for networking with the REST APIs.
