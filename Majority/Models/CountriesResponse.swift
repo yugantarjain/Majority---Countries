@@ -8,7 +8,7 @@
 import Foundation
 
 /// Country struct for the JSON response from the REST api
-struct CountriesResponse: Decodable {
+struct CountriesResponse: Codable {
 	// Properties
 	let name: Name
 	let flags: Flag
@@ -18,7 +18,7 @@ struct CountriesResponse: Decodable {
 	let languages: [String: String]?
 
 	// Supporting structures
-	struct Name: Decodable {
+	struct Name: Codable {
 		let common: String
 		let nativeName: [String: NativeName]?
 
@@ -27,16 +27,16 @@ struct CountriesResponse: Decodable {
 			return [common] + nativeNames
 		}
 
-		struct NativeName: Decodable {
+		struct NativeName: Codable {
 			let common: String
 		}
 	}
 
-	struct Flag: Decodable {
+	struct Flag: Codable {
 		let png: String
 	}
 
-	struct Currency: Decodable {
+	struct Currency: Codable {
 		let name: String
 		let symbol: String
 
@@ -44,4 +44,22 @@ struct CountriesResponse: Decodable {
 			name + " " + "(\(symbol))"
 		}
 	}
+}
+
+extension CountriesResponse: Equatable {
+	static func == (lhs: CountriesResponse, rhs: CountriesResponse) -> Bool {
+		lhs.name.common == rhs.name.common &&
+		lhs.region == rhs.region
+	}
+}
+
+extension CountriesResponse {
+	static let mock: Self = CountriesResponse(
+		name: .init(common: "Germany", nativeName: ["de" : .init(common: "Deutschland")]),
+		flags: .init(png: "https://flagcdn.com/w320/de.png"),
+		capital: ["Berlin"],
+		region: "Europe",
+		currencies: ["EUR" : CountriesResponse.Currency(name: "Euro", symbol: "€")],
+		languages: ["de" : "German"]
+	)
 }

@@ -59,6 +59,6 @@ extension Country {
 							  flagURL: "https://flagcdn.com/w320/de.png",
 							  capital: "Berlin",
 							  region: "Europe",
-							  currencies: ["Euro"],
+							  currencies: ["Euro (€)"],
 							  languages: ["German"])
 }
