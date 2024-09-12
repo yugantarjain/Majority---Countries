@@ -13,7 +13,7 @@ Tech stack:
 SwiftUI, Combine, SwiftData, Swift Catalog, XCTest.
 
 Architecture (MVVM):  
-REST API -> App response Codable -> Persistent SwiftData model -> View/ViewmModel
+REST API -> App response Codable -> Persistent SwiftData model -> View/ViewModel
 
 ## Features and technology:
 
