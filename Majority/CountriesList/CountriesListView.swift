@@ -10,19 +10,34 @@ import SwiftData
 
 struct CountriesListView: View {
 	@Query private var countries: [Country]
+	@Environment(\.modelContext) private var modelContext
+	var viewModel: CountriesViewModel
 
 	var body: some View {
-		List(countries, id: \.name) { country in
-			NavigationLink(value: country) {
-				CountriesListRow(country: country)
+		List {
+			ForEach(countries, id: \.name) { country in
+				NavigationLink(value: country) {
+					CountriesListRow(country: country)
+				}
+			}
+
+			if viewModel.loading {
+				ProgressView()
+			}
+		}
+		.task {
+			if countries.isEmpty {
+				viewModel.getCountries(modelContext: modelContext)
 			}
 		}
 	}
 
-	init(searchString: String) {
+	init(searchString: String, viewModel: CountriesViewModel) {
 		_countries = Query(
 			filter: #Predicate { searchString.isEmpty ? true : $0.name.localizedStandardContains(searchString) },
 			sort: [SortDescriptor(\Country.name)]
 		)
+
+		self.viewModel = viewModel
 	}
 }

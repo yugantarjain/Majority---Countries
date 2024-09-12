@@ -10,30 +10,16 @@ import SwiftData
 
 struct CountriesView: View {
 	@Bindable var viewModel = CountriesViewModel()
-	@Environment(\.modelContext) private var modelContext
 
 	var body: some View {
 		NavigationStack {
-			Group {
-				if viewModel.loading {
-					ProgressView()
-				} else if viewModel.error {
-					Button("An error occurred. Tap to retry.") {
-						viewModel.getCountries(modelContext: modelContext)
-					}
-				} else {
-					CountriesListView(searchString: viewModel.searchString)
+			CountriesListView(searchString: viewModel.searchString, viewModel: viewModel)
+				.searchable(text: $viewModel.searchString)
+				.autocorrectionDisabled()
+				.navigationDestination(for: Country.self) { country in
+					CountryDetailView(country: country)
 				}
-			}
-			.searchable(text: $viewModel.searchString)
-			.autocorrectionDisabled()
-			.navigationDestination(for: Country.self, destination: { country in
-				CountryDetailView(country: country)
-			})
-			.navigationTitle(LocalizedStrings.countries)
-			.onAppear {
-				viewModel.getCountries(modelContext: modelContext)
-			}
+				.navigationTitle(LocalizedStrings.countries)
 		}
 	}
 }

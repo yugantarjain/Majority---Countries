@@ -11,31 +11,31 @@ import SwiftData
 
 @Observable
 class CountriesViewModel {
+	
 	var searchString = ""
 
 	var loading = false
 	var error = false
-
-	var profileService = CountriesAPI()
+	let countriesAPI = CountriesAPI()
 
 	func getCountries(modelContext: ModelContext) {
-		self.loading = true
+		loading = true
 
-		profileService.getCountries { result in
+		countriesAPI.getCountries { result in
 			self.loading = false
 
 			switch result {
 				case .success(let countriesResponse):
-					self.error = false
 					for response in countriesResponse {
 						let country = Country(from: response)
 						modelContext.insert(country)
 					}
-
-				case .failure:
+					
+				case .failure(let error):
+					print(error)
 					self.error = true
 			}
 		}
 	}
-
+	
 }

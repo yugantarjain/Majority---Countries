@@ -1,9 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "An error occurred. Tap to retry." : {
-
-    },
     "Capital" : {
       "localizations" : {
         "sv" : {
