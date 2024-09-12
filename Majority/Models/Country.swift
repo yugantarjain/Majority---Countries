@@ -18,6 +18,14 @@ class Country {
 	var currencies: [String]?
 	var languages: [String]?
 
+	@Attribute(.externalStorage) var flagData: Data {
+		get async throws {
+			guard let url = URL(string: flagURL) else { return Data() }
+			let (data, _) = try await URLSession.shared.data(from: url)
+			return data
+		}
+	}
+
 	init(name: String, displayNames: [String], flagURL: String, capital: String? = nil, region: String, currencies: [String]? = nil, languages: [String]? = nil) {
 		self.name = name
 		self.displayNames = displayNames

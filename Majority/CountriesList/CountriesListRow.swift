@@ -27,6 +27,12 @@ struct CountriesListRow: View {
 			.frame(width: Size.mediumLarge, height: Size.medium)
 			.clipShape(.rect(cornerRadius: Size.xxSmall))
 		}
+		.task {
+			Task {
+				// helps with caching AsyncImage somehow
+				_ = try await country.flagData
+			}
+		}
 	}
 }
 
