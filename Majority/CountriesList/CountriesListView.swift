@@ -11,7 +11,7 @@ import SwiftData
 struct CountriesListView: View {
 	@Query private var countries: [Country]
 	@Environment(\.modelContext) private var modelContext
-	var viewModel: CountriesViewModel
+	@Bindable var viewModel: CountriesViewModel
 
 	var body: some View {
 		List {
@@ -30,9 +30,15 @@ struct CountriesListView: View {
 				viewModel.getCountries(modelContext: modelContext)
 			}
 		}
+		.alert(LocalizedStrings.errorOccurred, isPresented: $viewModel.error) {
+			Button(LocalizedStrings.retry) {
+				viewModel.getCountries(modelContext: modelContext)
+			}
+		}
 	}
 
-	init(searchString: String, viewModel: CountriesViewModel) {
+	init(viewModel: CountriesViewModel) {
+		let searchString = viewModel.searchString
 		_countries = Query(
 			filter: #Predicate { searchString.isEmpty ? true : $0.name.localizedStandardContains(searchString) },
 			sort: [SortDescriptor(\Country.name)]

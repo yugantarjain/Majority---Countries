@@ -13,7 +13,7 @@ struct CountriesView: View {
 
 	var body: some View {
 		NavigationStack {
-			CountriesListView(searchString: viewModel.searchString, viewModel: viewModel)
+			CountriesListView(viewModel: viewModel)
 				.searchable(text: $viewModel.searchString)
 				.autocorrectionDisabled()
 				.navigationDestination(for: Country.self) { country in

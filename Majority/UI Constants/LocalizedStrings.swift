@@ -13,4 +13,6 @@ enum LocalizedStrings {
 	static let region = LocalizedStringKey("Region")
 	static let currencies = LocalizedStringKey("Currencies")
 	static let languages = LocalizedStringKey("Languages")
+	static let retry = LocalizedStringKey("Retry")
+	static let errorOccurred = LocalizedStringKey("An error occurred")
 }
